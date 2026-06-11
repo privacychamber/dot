@@ -4,17 +4,17 @@
 
 @layer base {
   :root {
-    --color-primary: #F4F4F5;
-    --color-secondary: #050505;
-    --color-accent: #0047FF;
-    --color-neon: #B026FF;
+    --color-primary: 244 244 245;
+    --color-secondary: 5 5 5;
+    --color-accent: 0 71 255;
+    --color-neon: 176 38 255;
   }
   
   html.dark {
-    --color-primary: #050505;
-    --color-secondary: #F4F4F5;
-    --color-accent: #0047FF;
-    --color-neon: #B026FF;
+    --color-primary: 5 5 5;
+    --color-secondary: 244 244 245;
+    --color-accent: 0 71 255;
+    --color-neon: 176 38 255;
   }
 
   body {
