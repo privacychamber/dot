@@ -28,7 +28,7 @@
           </template>
           <template x-for="item in $store.cart.items">
             <div class="flex gap-6 mb-8">
-              <div class="w-24 aspect-[3/4] bg-neutral-900 overflow-hidden">
+              <div class="w-24 aspect-[3/4] bg-secondary/5 overflow-hidden">
                 <img :src="item.image || '/images/party_patrol_1781196580837.png'" class="w-full h-full object-cover">
               </div>
               <div class="flex-1 flex flex-col justify-center">
@@ -52,7 +52,7 @@
     </div>
 
     <!-- Desktop Navigation -->
-    <nav class="hidden md:flex fixed w-full z-50 mix-blend-difference top-0 left-0 p-8 justify-between items-center text-secondary">
+    <nav class="hidden md:flex fixed w-full z-50 bg-primary/80 backdrop-blur-md border-b border-secondary/10 top-0 left-0 p-8 justify-between items-center text-secondary">
       <a href="/index.html" class="text-2xl font-display font-bold tracking-tighter">D.O.T</a>
       <div class="flex gap-10 text-xs uppercase tracking-[0.2em]">
         <a href="/shop.html" class="hover:text-accent transition-colors">Collections</a>
@@ -111,7 +111,7 @@
       <!-- Editorial Spotlight -->
       <section class="py-20 md:py-32 px-6 flex flex-col lg:flex-row gap-12 md:gap-24 items-center border-b border-secondary/10">
         <div class="w-full lg:w-1/2 fade-up">
-          <div class="w-full aspect-square overflow-hidden bg-neutral-900">
+          <div class="w-full aspect-square overflow-hidden bg-secondary/5">
             <img src="/images/community_rave_1781196618755.png" class="w-full h-full object-cover">
           </div>
         </div>
@@ -136,26 +136,26 @@
         <div class="flex flex-col md:flex-row gap-6 md:gap-12">
           
           <div class="w-full md:w-1/3 flex flex-col gap-6 md:gap-12">
-            <div class="w-full aspect-[3/4] bg-neutral-900 overflow-hidden group relative fade-up">
+            <div class="w-full aspect-[3/4] bg-secondary/5 overflow-hidden group relative fade-up">
               <img src="/images/community_neon_1781196631842.png" class="w-full h-full object-cover">
               <div class="absolute inset-0 bg-primary/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                 <span class="uppercase text-xs tracking-[0.2em]">@neon.dreamer</span>
               </div>
             </div>
-            <div class="w-full aspect-square bg-neutral-900 overflow-hidden group relative fade-up">
+            <div class="w-full aspect-square bg-secondary/5 overflow-hidden group relative fade-up">
               <img src="/images/psytrance_buddha_1781196594257.png" class="w-full h-full object-cover">
             </div>
           </div>
 
           <div class="w-full md:w-2/3 flex flex-col gap-6 md:gap-12 md:mt-32">
-            <div class="w-full aspect-video bg-neutral-900 overflow-hidden group relative fade-up">
+            <div class="w-full aspect-video bg-secondary/5 overflow-hidden group relative fade-up">
               <img src="/images/cyber_samurai_1781196605932.png" class="w-full h-full object-cover">
             </div>
             <div class="flex gap-6 md:gap-12">
-              <div class="w-1/2 aspect-square bg-neutral-900 overflow-hidden group relative fade-up">
+              <div class="w-1/2 aspect-square bg-secondary/5 overflow-hidden group relative fade-up">
                 <img src="/images/party_patrol_1781196580837.png" class="w-full h-full object-cover">
               </div>
-              <div class="w-1/2 aspect-[3/4] bg-neutral-900 overflow-hidden group relative fade-up">
+              <div class="w-1/2 aspect-[3/4] bg-secondary/5 overflow-hidden group relative fade-up">
                 <img src="/images/community_rave_1781196618755.png" class="w-full h-full object-cover">
               </div>
             </div>

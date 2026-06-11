@@ -32,7 +32,7 @@
           </template>
           <template x-for="item in $store.cart.items">
             <div class="flex gap-6 mb-8">
-              <div class="w-24 aspect-[3/4] bg-neutral-900 overflow-hidden">
+              <div class="w-24 aspect-[3/4] bg-secondary/5 overflow-hidden">
                 <img :src="item.image || '/images/party_patrol_1781196580837.png'" class="w-full h-full object-cover">
               </div>
               <div class="flex-1 flex flex-col justify-center">
@@ -57,7 +57,7 @@
     </div>
 
     <!-- Desktop Navigation -->
-    <nav class="hidden md:flex fixed w-full z-50 mix-blend-difference top-0 left-0 p-8 justify-between items-center text-secondary">
+    <nav class="hidden md:flex fixed w-full z-50 bg-primary/80 backdrop-blur-md border-b border-secondary/10 top-0 left-0 p-8 justify-between items-center text-secondary">
       <a href="/index.html" class="text-2xl font-display font-bold tracking-tighter">D.O.T</a>
       <div class="flex gap-10 text-xs uppercase tracking-[0.2em]">
         <a href="/shop.html" class="hover:text-accent transition-colors">Collections</a>
@@ -110,7 +110,7 @@
       <!-- Three.js Canvas container -->
       <div id="canvas-container" class="absolute inset-0 z-0"></div>
       
-      <div class="relative z-10 text-center px-6 mix-blend-difference fade-up">
+      <div class="relative z-10 text-center px-6 mix-blend-difference text-white fade-up">
         <p class="uppercase tracking-[0.3em] text-xs md:text-sm text-neutral-400 mb-6">Chapter I: The Awakening</p>
         <h1 class="text-7xl md:text-[10rem] font-display font-bold leading-none tracking-tighter mix-blend-overlay">
           Dream<br>Of Thousands
@@ -121,7 +121,7 @@
       </div>
       
       <!-- Scroll indicator -->
-      <div class="absolute bottom-24 md:bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4 opacity-50 z-10 mix-blend-difference">
+      <div class="absolute bottom-24 md:bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4 opacity-50 z-10 mix-blend-difference text-white">
         <span class="text-[10px] uppercase tracking-[0.2em] rotate-90 origin-left ml-2">Scroll</span>
         <div class="w-[1px] h-12 bg-secondary overflow-hidden">
           <div class="w-full h-full bg-primary animate-[scroll_2s_ease-in-out_infinite]"></div>
@@ -178,7 +178,7 @@
         
         <!-- Archive Item -->
         <a href="/product.html" class="min-w-[85vw] md:min-w-0 snap-center group fade-up">
-          <div class="w-full aspect-[3/4] overflow-hidden mb-6 bg-neutral-900">
+          <div class="w-full aspect-[3/4] overflow-hidden mb-6 bg-secondary/5">
             <img src="/images/psytrance_buddha_1781196594257.png" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000" loading="lazy">
           </div>
           <h3 class="text-2xl font-display mb-2">Psytrance Buddha</h3>
@@ -187,7 +187,7 @@
 
         <!-- Archive Item -->
         <a href="/product.html" class="min-w-[85vw] md:min-w-0 snap-center group fade-up md:mt-24">
-          <div class="w-full aspect-[3/4] overflow-hidden mb-6 bg-neutral-900">
+          <div class="w-full aspect-[3/4] overflow-hidden mb-6 bg-secondary/5">
             <img src="/images/cyber_samurai_1781196605932.png" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000" loading="lazy">
           </div>
           <h3 class="text-2xl font-display mb-2">Cyber Samurai</h3>
