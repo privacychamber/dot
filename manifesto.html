@@ -2,68 +2,152 @@
 <html lang="en" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>Manifesto | D.O.T</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,800;1,400&display=swap" rel="stylesheet">
+    <style>
+      .no-scrollbar::-webkit-scrollbar { display: none; }
+      .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+      .snap-y-container { height: 100vh; overflow-y: scroll; scroll-snap-type: y mandatory; }
+      .snap-section { height: 100vh; scroll-snap-align: start; }
+    </style>
   </head>
-  <body x-data="{ menuOpen: false }" x-init="$store.theme.init()" class="bg-primary text-secondary transition-colors duration-500">
+  <body x-data="{ menuOpen: false }" x-init="$store.theme.init()" :class="menuOpen ? 'overflow-hidden' : ''" class="bg-primary text-secondary transition-colors duration-500 m-0 p-0">
     
-    <!-- Navigation -->
-    <nav class="fixed w-full z-50 top-0 left-0 p-6 flex justify-between items-center text-secondary mix-blend-difference">
+    <!-- Cart Drawer (Redesigned Premium) -->
+    <div x-show="$store.cart.isOpen" class="fixed inset-0 z-[70] flex justify-end" style="display: none;">
+      <div class="absolute inset-0 bg-primary/90 backdrop-blur-md" @click="$store.cart.isOpen = false" x-show="$store.cart.isOpen" x-transition.opacity></div>
+      <div class="relative w-full md:w-[480px] bg-primary h-[100dvh] flex flex-col pt-12 pb-6 px-8 md:border-l border-secondary/10" x-show="$store.cart.isOpen" x-transition:enter="transition-transform ease-out duration-500" x-transition:enter-start="translate-x-full" x-transition:enter-end="translate-x-0" x-transition:leave="transition-transform ease-in duration-500" x-transition:leave-start="translate-x-0" x-transition:leave-end="translate-x-full">
+        <div class="flex justify-between items-center mb-10 border-b border-secondary/10 pb-6">
+          <h2 class="text-3xl font-display">Bag</h2>
+          <button @click="$store.cart.isOpen = false" class="uppercase text-xs tracking-[0.2em] hover:text-accent transition-colors">Close</button>
+        </div>
+        <div class="flex-1 overflow-y-auto no-scrollbar">
+          <template x-if="$store.cart.items.length === 0">
+            <div class="h-full flex flex-col items-center justify-center text-center text-neutral-500">
+              <p class="text-xl font-display mb-4">Your bag is empty.</p>
+            </div>
+          </template>
+          <template x-for="item in $store.cart.items">
+            <div class="flex gap-6 mb-8">
+              <div class="w-24 aspect-[3/4] bg-neutral-900 overflow-hidden">
+                <img :src="item.image || '/images/party_patrol_1781196580837.png'" class="w-full h-full object-cover">
+              </div>
+              <div class="flex-1 flex flex-col justify-center">
+                <h4 class="font-display text-xl mb-1" x-text="item.name"></h4>
+                <p class="text-neutral-500 text-xs uppercase tracking-widest mb-4">Size: L</p>
+                <div class="text-sm font-medium tracking-wide" x-text="'₹' + item.price"></div>
+              </div>
+            </div>
+          </template>
+        </div>
+        <div class="mt-auto pt-6 border-t border-secondary/10">
+          <div class="flex justify-between items-center mb-6 text-sm">
+            <span class="text-neutral-500 uppercase tracking-widest">Subtotal</span>
+            <span class="font-medium" x-text="'₹' + ($store.cart.items.reduce((acc, i) => acc + i.price, 0))"></span>
+          </div>
+          <a href="/checkout.html" class="w-full py-5 bg-secondary text-primary uppercase tracking-[0.2em] text-xs font-bold text-center block hover:bg-accent hover:text-white transition-colors">
+            Proceed to Checkout
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Desktop Navigation -->
+    <nav class="hidden md:flex fixed w-full z-50 mix-blend-difference top-0 left-0 p-8 justify-between items-center text-secondary">
       <a href="/index.html" class="text-2xl font-display font-bold tracking-tighter">D.O.T</a>
-      <div class="hidden md:flex gap-8 text-sm uppercase tracking-widest">
-        <a href="/shop.html" class="hover:text-accent transition-colors">Shop</a>
+      <div class="flex gap-10 text-xs uppercase tracking-[0.2em]">
+        <a href="/shop.html" class="hover:text-accent transition-colors">Collections</a>
         <a href="/manifesto.html" class="text-accent transition-colors">Manifesto</a>
-        <a href="/community.html" class="hover:text-accent transition-colors">Community</a>
+        <a href="/community.html" class="hover:text-accent transition-colors">Culture</a>
+        <a href="/about.html" class="hover:text-accent transition-colors">Origins</a>
       </div>
       <div class="flex items-center gap-6">
-        <!-- Theme Toggle -->
         <button @click="$store.theme.toggle($event)" class="w-12 h-6 rounded-full border border-secondary/30 relative flex items-center px-1 overflow-hidden group">
           <div class="absolute inset-0 bg-secondary/10 group-hover:bg-secondary/20 transition-colors"></div>
           <div class="w-4 h-4 rounded-full bg-secondary transition-transform duration-500" :class="$store.theme.isDark ? 'translate-x-0' : 'translate-x-6'"></div>
         </button>
+        <button @click="$store.cart.isOpen = true" class="uppercase text-xs tracking-[0.2em] hover:text-accent transition-colors">
+          Bag (<span x-text="$store.cart.count">0</span>)
+        </button>
       </div>
     </nav>
 
-    <!-- Manifesto Content -->
-    <main class="min-h-screen pt-40 pb-32 px-6">
-      <div class="max-w-4xl mx-auto text-center manifesto-text">
-        <h3 class="text-accent uppercase tracking-[0.2em] text-sm mb-12">The Manifesto</h3>
-        
-        <p class="text-4xl md:text-6xl font-display leading-tight mb-16 fade-up">
-          D.O.T is not a clothing brand.<br>
-          <span class="italic text-neutral-500">It is a movement.</span>
-        </p>
+    <!-- Mobile Top Header -->
+    <nav class="md:hidden fixed w-full z-50 top-0 left-0 p-6 flex justify-between items-center bg-primary/80 backdrop-blur-md border-b border-secondary/10">
+      <a href="/index.html" class="text-xl font-display font-bold tracking-tighter">D.O.T</a>
+      <button @click="$store.theme.toggle($event)" class="w-10 h-5 rounded-full border border-secondary/30 relative flex items-center px-1">
+        <div class="w-3 h-3 rounded-full bg-secondary transition-transform duration-500" :class="$store.theme.isDark ? 'translate-x-0' : 'translate-x-5'"></div>
+      </button>
+    </nav>
 
-        <div class="w-full aspect-video bg-neutral-900 mb-24 fade-up flex items-center justify-center text-neutral-600 font-display text-2xl">
-          [ Cinematic Brand Video ]
+    <!-- Mobile Bottom Navigation -->
+    <nav class="md:hidden fixed bottom-0 left-0 w-full z-50 bg-primary/95 backdrop-blur-xl border-t border-secondary/10 flex justify-around items-center px-2 pb-safe pt-2 h-20">
+      <a href="/index.html" class="flex flex-col items-center gap-1 text-neutral-500 hover:text-secondary w-1/4">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+        <span class="text-[10px] uppercase tracking-widest font-medium">Home</span>
+      </a>
+      <a href="/shop.html" class="flex flex-col items-center gap-1 text-neutral-500 hover:text-secondary w-1/4">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
+        <span class="text-[10px] uppercase tracking-widest font-medium">Shop</span>
+      </a>
+      <a href="/community.html" class="flex flex-col items-center gap-1 text-neutral-500 hover:text-secondary w-1/4">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+        <span class="text-[10px] uppercase tracking-widest font-medium">Culture</span>
+      </a>
+      <button @click="$store.cart.isOpen = true" class="flex flex-col items-center gap-1 text-neutral-500 hover:text-secondary w-1/4 relative">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
+        <span class="absolute top-0 right-4 bg-accent text-white text-[9px] w-4 h-4 rounded-full flex items-center justify-center" x-show="$store.cart.count > 0" x-text="$store.cart.count"></span>
+        <span class="text-[10px] uppercase tracking-widest font-medium">Bag</span>
+      </button>
+    </nav>
+
+    <!-- Cinematic Snap Scroll Manifesto -->
+    <main class="snap-y-container no-scrollbar w-full">
+      
+      <!-- Part 1 -->
+      <section class="snap-section flex flex-col justify-center items-center text-center px-6 relative w-full border-b border-secondary/10">
+        <div class="fade-up max-w-4xl">
+          <p class="uppercase tracking-[0.4em] text-accent text-xs mb-8">Part I</p>
+          <h1 class="text-5xl md:text-8xl font-display leading-tight">D.O.T is not a<br>clothing brand.</h1>
         </div>
+        <div class="absolute bottom-10 animate-bounce text-xs uppercase tracking-widest">Scroll</div>
+      </section>
 
-        <p class="text-2xl md:text-4xl font-display leading-snug mb-16 fade-up text-left">
-          For the dreamers, creators, misfits, artists, gamers, anime lovers, and underground culture enthusiasts. For people who see the world differently.
-        </p>
+      <!-- Part 2 -->
+      <section class="snap-section flex flex-col justify-center px-6 md:px-32 relative w-full border-b border-secondary/10 bg-secondary/5">
+        <div class="fade-up max-w-5xl">
+          <p class="uppercase tracking-[0.4em] text-neutral-500 text-xs mb-8">Part II</p>
+          <h2 class="text-4xl md:text-7xl font-display leading-tight italic text-neutral-400">
+            "It is a movement for the dreamers, creators, and misfits."
+          </h2>
+        </div>
+      </section>
 
-        <p class="text-xl md:text-2xl font-sans font-light leading-relaxed mb-16 fade-up text-left text-neutral-400">
-          We merge animated art with luxury streetwear. Every piece we create is a canvas that brings your favourite frames to life. Designed with intention, printed on heavyweight cotton, and built for the underground.
-        </p>
+      <!-- Part 3 -->
+      <section class="snap-section flex flex-col justify-center items-end text-right px-6 md:px-32 relative w-full border-b border-secondary/10">
+        <div class="fade-up max-w-5xl">
+          <p class="uppercase tracking-[0.4em] text-neutral-500 text-xs mb-8">Part III</p>
+          <h2 class="text-4xl md:text-7xl font-display leading-tight">
+            We merge digital art with luxury streetwear.
+          </h2>
+        </div>
+      </section>
 
-        <div class="fade-up">
-          <a href="/shop.html" class="magnetic-btn border-secondary text-secondary hover:text-primary">
-            Explore The Universe
+      <!-- Part 4 -->
+      <section class="snap-section flex flex-col justify-center items-center text-center px-6 relative w-full">
+        <div class="absolute inset-0 z-0">
+          <img src="/images/community_neon_1781196631842.png" class="w-full h-full object-cover mix-blend-overlay opacity-30">
+        </div>
+        <div class="relative z-10 fade-up max-w-4xl">
+          <h2 class="text-6xl md:text-9xl font-display font-bold leading-none mb-12">Join The<br>Underground.</h2>
+          <a href="/shop.html" class="inline-block py-5 px-12 bg-secondary text-primary uppercase tracking-[0.3em] text-xs font-bold hover:bg-accent hover:text-white transition-colors">
+            Explore Collection
           </a>
         </div>
-      </div>
-    </main>
+      </section>
 
-    <!-- Footer -->
-    <footer class="py-20 px-6 border-t border-secondary/10">
-      <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start md:items-center gap-12">
-        <div>
-          <h2 class="text-4xl font-display font-bold mb-4">D.O.T</h2>
-          <p class="text-neutral-400 max-w-sm">Made in India, For The Dreamers.</p>
-        </div>
-      </div>
-    </footer>
+    </main>
 
     <script type="module" src="/src/main.js"></script>
   </body>

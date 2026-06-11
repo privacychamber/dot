@@ -2,103 +2,108 @@
 <html lang="en" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>Checkout | D.O.T</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,800;1,400&display=swap" rel="stylesheet">
   </head>
-  <body x-data="{ menuOpen: false }" x-init="$store.theme.init()" class="bg-primary text-secondary transition-colors duration-500">
+  <body x-data x-init="$store.theme.init()" class="bg-primary text-secondary transition-colors duration-500 m-0 p-0">
     
-    <!-- Navigation -->
-    <nav class="fixed w-full z-50 top-0 left-0 p-6 flex justify-between items-center text-secondary border-b border-secondary/10 bg-primary/80 backdrop-blur-md">
-      <a href="/index.html" class="text-2xl font-display font-bold tracking-tighter">D.O.T</a>
-      <div class="flex items-center gap-6">
-        <!-- Theme Toggle -->
-        <button @click="$store.theme.toggle($event)" class="w-12 h-6 rounded-full border border-secondary/30 relative flex items-center px-1 overflow-hidden group">
-          <div class="absolute inset-0 bg-secondary/10 group-hover:bg-secondary/20 transition-colors"></div>
-          <div class="w-4 h-4 rounded-full bg-secondary transition-transform duration-500" :class="$store.theme.isDark ? 'translate-x-0' : 'translate-x-6'"></div>
-        </button>
-      </div>
-    </nav>
+    <!-- Minimalist Checkout Header -->
+    <header class="w-full py-8 px-6 border-b border-secondary/10 flex justify-center items-center">
+      <a href="/index.html" class="text-3xl font-display font-bold tracking-tighter hover:text-accent transition-colors">D.O.T</a>
+    </header>
 
-    <!-- Checkout Layout -->
-    <main class="min-h-screen pt-32 pb-20 px-6 max-w-6xl mx-auto flex flex-col md:flex-row gap-16">
+    <main class="max-w-[1200px] mx-auto flex flex-col md:flex-row min-h-screen">
       
-      <!-- Left: Form -->
-      <div class="w-full md:w-3/5">
-        <h1 class="text-4xl font-display mb-10">Checkout</h1>
-        
-        <form class="space-y-10">
-          <!-- Contact -->
-          <section>
-            <h2 class="text-xl font-display mb-6">Contact Information</h2>
-            <div class="space-y-4">
-              <input type="email" placeholder="Email Address" class="w-full bg-transparent border border-secondary/20 p-4 focus:outline-none focus:border-accent transition-colors">
+      <!-- Left: Checkout Form (Intentional, elegant spacing) -->
+      <div class="w-full md:w-[55%] p-8 md:p-16 flex flex-col order-2 md:order-1 border-r border-secondary/10">
+        <div class="max-w-md mx-auto w-full">
+          
+          <h2 class="text-3xl font-display mb-10">Checkout</h2>
+          
+          <form class="space-y-10" @submit.prevent="alert('This is a demo. Checkout functionality would connect to your payment processor here.')">
+            
+            <!-- Contact Info -->
+            <div>
+              <h3 class="text-xs uppercase tracking-[0.2em] text-neutral-500 mb-6">Contact Information</h3>
+              <input type="email" placeholder="Email Address" class="w-full bg-transparent border-b border-secondary/20 p-4 focus:outline-none focus:border-secondary transition-colors text-sm placeholder-neutral-500" required>
             </div>
-          </section>
 
-          <!-- Shipping -->
-          <section>
-            <h2 class="text-xl font-display mb-6">Shipping Address</h2>
-            <div class="grid grid-cols-2 gap-4">
-              <input type="text" placeholder="First Name" class="w-full bg-transparent border border-secondary/20 p-4 focus:outline-none focus:border-accent transition-colors">
-              <input type="text" placeholder="Last Name" class="w-full bg-transparent border border-secondary/20 p-4 focus:outline-none focus:border-accent transition-colors">
-              <input type="text" placeholder="Address" class="w-full bg-transparent border border-secondary/20 p-4 focus:outline-none focus:border-accent transition-colors col-span-2">
-              <input type="text" placeholder="City" class="w-full bg-transparent border border-secondary/20 p-4 focus:outline-none focus:border-accent transition-colors">
-              <input type="text" placeholder="PIN Code" class="w-full bg-transparent border border-secondary/20 p-4 focus:outline-none focus:border-accent transition-colors">
-            </div>
-          </section>
-
-          <!-- Payment -->
-          <section>
-            <h2 class="text-xl font-display mb-6">Payment</h2>
-            <div class="space-y-4">
-              <input type="text" placeholder="Card Number" class="w-full bg-transparent border border-secondary/20 p-4 focus:outline-none focus:border-accent transition-colors">
-              <div class="grid grid-cols-2 gap-4">
-                <input type="text" placeholder="MM/YY" class="w-full bg-transparent border border-secondary/20 p-4 focus:outline-none focus:border-accent transition-colors">
-                <input type="text" placeholder="CVC" class="w-full bg-transparent border border-secondary/20 p-4 focus:outline-none focus:border-accent transition-colors">
+            <!-- Shipping Info -->
+            <div>
+              <h3 class="text-xs uppercase tracking-[0.2em] text-neutral-500 mb-6">Shipping Details</h3>
+              <div class="space-y-4">
+                <div class="flex gap-4">
+                  <input type="text" placeholder="First Name" class="w-1/2 bg-transparent border-b border-secondary/20 p-4 focus:outline-none focus:border-secondary transition-colors text-sm placeholder-neutral-500" required>
+                  <input type="text" placeholder="Last Name" class="w-1/2 bg-transparent border-b border-secondary/20 p-4 focus:outline-none focus:border-secondary transition-colors text-sm placeholder-neutral-500" required>
+                </div>
+                <input type="text" placeholder="Address" class="w-full bg-transparent border-b border-secondary/20 p-4 focus:outline-none focus:border-secondary transition-colors text-sm placeholder-neutral-500" required>
+                <div class="flex gap-4">
+                  <input type="text" placeholder="City" class="w-1/2 bg-transparent border-b border-secondary/20 p-4 focus:outline-none focus:border-secondary transition-colors text-sm placeholder-neutral-500" required>
+                  <input type="text" placeholder="Postal Code" class="w-1/2 bg-transparent border-b border-secondary/20 p-4 focus:outline-none focus:border-secondary transition-colors text-sm placeholder-neutral-500" required>
+                </div>
               </div>
             </div>
-          </section>
 
-          <button type="button" class="w-full magnetic-btn !rounded-none !border-secondary !py-5 bg-secondary text-primary hover:bg-transparent hover:text-secondary transition-all font-bold">
-            Pay Now
-          </button>
-        </form>
+            <!-- Payment Info -->
+            <div>
+              <h3 class="text-xs uppercase tracking-[0.2em] text-neutral-500 mb-6">Payment</h3>
+              <div class="bg-secondary/5 border border-secondary/20 p-6 rounded-sm">
+                <p class="text-sm text-neutral-400 font-light text-center">Payment processing is disabled in this preview.</p>
+              </div>
+            </div>
+
+            <button type="submit" class="w-full py-5 bg-secondary text-primary uppercase tracking-[0.2em] text-xs font-bold text-center hover:bg-accent hover:text-white transition-all mt-12">
+              Complete Order
+            </button>
+            <a href="/shop.html" class="block text-center mt-6 text-xs text-neutral-500 hover:text-secondary underline">Return to Shop</a>
+            
+          </form>
+        </div>
       </div>
 
-      <!-- Right: Summary -->
-      <div class="w-full md:w-2/5 bg-secondary/5 p-8 border border-secondary/10 h-fit sticky top-32">
-        <h2 class="text-xl font-display mb-8">Order Summary</h2>
-        
-        <div class="space-y-6 mb-8 border-b border-secondary/10 pb-8">
+      <!-- Right: Order Summary (Large imagery, clean) -->
+      <div class="w-full md:w-[45%] p-8 md:p-16 bg-secondary/5 order-1 md:order-2 h-fit md:min-h-screen">
+        <div class="max-w-md mx-auto w-full">
+          
+          <h2 class="text-xs uppercase tracking-[0.2em] text-neutral-500 mb-10">Order Summary</h2>
+          
           <template x-if="$store.cart.items.length === 0">
-            <p class="text-neutral-500">Your cart is empty.</p>
+            <p class="text-neutral-500 text-sm">Your bag is empty.</p>
           </template>
-          <template x-for="item in $store.cart.items">
-            <div class="flex gap-4">
-              <div class="w-16 h-20 bg-neutral-800 rounded-sm overflow-hidden"><img :src="item.image || '/images/party_patrol_1781196580837.png'" class="w-full h-full object-cover"></div>
-              <div class="flex-1">
-                <h4 class="uppercase tracking-widest text-sm mb-1" x-text="item.name"></h4>
-                <p class="text-neutral-500 text-xs mb-2">Size: L</p>
-                <div class="text-sm" x-text="'₹' + item.price"></div>
-              </div>
-            </div>
-          </template>
-        </div>
 
-        <div class="space-y-4 text-sm">
-          <div class="flex justify-between">
-            <span class="text-neutral-400">Subtotal</span>
-            <span>₹4,998</span>
+          <div class="space-y-8 mb-12">
+            <template x-for="item in $store.cart.items">
+              <div class="flex gap-6">
+                <div class="w-24 aspect-[3/4] bg-neutral-900 overflow-hidden shadow-lg relative">
+                  <img :src="item.image || '/images/party_patrol_1781196580837.png'" class="w-full h-full object-cover">
+                  <div class="absolute top-0 right-0 bg-secondary text-primary w-5 h-5 flex items-center justify-center text-[10px] font-bold">1</div>
+                </div>
+                <div class="flex-1 flex flex-col justify-center">
+                  <h4 class="font-display text-xl mb-1" x-text="item.name"></h4>
+                  <p class="text-neutral-500 text-xs uppercase tracking-widest mb-4">Size: L</p>
+                  <div class="text-sm font-medium tracking-wide" x-text="'₹' + item.price"></div>
+                </div>
+              </div>
+            </template>
           </div>
-          <div class="flex justify-between">
-            <span class="text-neutral-400">Shipping</span>
-            <span>Free</span>
+
+          <!-- Totals -->
+          <div class="border-t border-secondary/10 pt-8 space-y-4 text-sm">
+            <div class="flex justify-between text-neutral-400">
+              <span>Subtotal</span>
+              <span x-text="'₹' + ($store.cart.items.reduce((acc, i) => acc + i.price, 0))"></span>
+            </div>
+            <div class="flex justify-between text-neutral-400">
+              <span>Shipping</span>
+              <span>Calculated at next step</span>
+            </div>
+            <div class="flex justify-between text-xl font-display pt-6 border-t border-secondary/10">
+              <span>Total</span>
+              <span x-text="'₹' + ($store.cart.items.reduce((acc, i) => acc + i.price, 0))"></span>
+            </div>
           </div>
-          <div class="flex justify-between text-lg font-bold pt-4 border-t border-secondary/10 mt-4">
-            <span>Total</span>
-            <span>₹4,998</span>
-          </div>
+
         </div>
       </div>
 

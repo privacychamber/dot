@@ -15,6 +15,7 @@ export default defineConfig({
         checkout: resolve(__dirname, 'checkout.html'),
         community: resolve(__dirname, 'community.html'),
         manifesto: resolve(__dirname, 'manifesto.html'),
+        about: resolve(__dirname, 'about.html'),
       },
     },
   },

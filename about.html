@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>Culture | D.O.T</title>
+    <title>Origins | D.O.T</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,800;1,400&display=swap" rel="stylesheet">
     <style>
       .no-scrollbar::-webkit-scrollbar { display: none; }
@@ -57,8 +57,8 @@
       <div class="flex gap-10 text-xs uppercase tracking-[0.2em]">
         <a href="/shop.html" class="hover:text-accent transition-colors">Collections</a>
         <a href="/manifesto.html" class="hover:text-accent transition-colors">Manifesto</a>
-        <a href="/community.html" class="text-accent transition-colors">Culture</a>
-        <a href="/about.html" class="hover:text-accent transition-colors">Origins</a>
+        <a href="/community.html" class="hover:text-accent transition-colors">Culture</a>
+        <a href="/about.html" class="text-accent transition-colors">Origins</a>
       </div>
       <div class="flex items-center gap-6">
         <button @click="$store.theme.toggle($event)" class="w-12 h-6 rounded-full border border-secondary/30 relative flex items-center px-1 overflow-hidden group">
@@ -89,7 +89,7 @@
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
         <span class="text-[10px] uppercase tracking-widest font-medium">Shop</span>
       </a>
-      <a href="/community.html" class="flex flex-col items-center gap-1 text-accent w-1/4">
+      <a href="/community.html" class="flex flex-col items-center gap-1 text-neutral-500 hover:text-secondary w-1/4">
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
         <span class="text-[10px] uppercase tracking-widest font-medium">Culture</span>
       </a>
@@ -101,67 +101,66 @@
     </nav>
 
     <!-- Header -->
-    <header class="pt-40 md:pt-60 pb-20 px-6 text-center max-w-4xl mx-auto border-b border-secondary/10">
-      <h1 class="text-6xl md:text-[8rem] font-display mb-6 tracking-tight leading-none">Culture<br>Index.</h1>
-      <p class="text-neutral-500 text-lg md:text-xl font-light">Spaces, faces, and places. The pulse of the D.O.T underground.</p>
+    <header class="pt-40 md:pt-60 pb-20 px-6 max-w-4xl mx-auto border-b border-secondary/10 text-center md:text-left">
+      <h1 class="text-6xl md:text-[8rem] font-display mb-6 tracking-tight leading-none">Origins.</h1>
     </header>
 
-    <main class="max-w-[1600px] mx-auto">
+    <main class="max-w-[1200px] mx-auto px-6 py-20 md:py-32">
       
-      <!-- Editorial Spotlight -->
-      <section class="py-20 md:py-32 px-6 flex flex-col lg:flex-row gap-12 md:gap-24 items-center border-b border-secondary/10">
-        <div class="w-full lg:w-1/2 fade-up">
-          <div class="w-full aspect-square overflow-hidden bg-neutral-900">
-            <img src="/images/community_rave_1781196618755.png" class="w-full h-full object-cover">
-          </div>
+      <!-- Section 1 -->
+      <section class="flex flex-col md:flex-row gap-12 md:gap-32 mb-32 fade-up">
+        <div class="w-full md:w-1/3">
+          <h2 class="text-xs uppercase tracking-[0.3em] text-neutral-500 sticky top-32">01 / Why D.O.T Exists</h2>
         </div>
-        <div class="w-full lg:w-1/2 fade-up">
-          <p class="uppercase tracking-[0.3em] text-accent text-xs mb-6">Spotlight</p>
-          <h2 class="text-5xl md:text-7xl font-display leading-tight mb-8">Midnight Sessions in Goa.</h2>
-          <p class="text-lg text-neutral-400 font-light leading-relaxed mb-12 max-w-lg">
-            We followed local DJs and producers through the underground trance scene to document how they wear our art in its natural habitat.
+        <div class="w-full md:w-2/3">
+          <p class="text-2xl md:text-4xl font-display leading-relaxed mb-8">
+            Fashion has become a factory. Mass production, soulless graphics, and disposable trends have stripped away the artistry that once defined streetwear.
           </p>
-          <button class="uppercase tracking-[0.2em] text-xs border-b border-secondary pb-1 hover:text-accent transition-colors">Read Editorial</button>
+          <p class="text-lg text-neutral-400 font-light leading-relaxed">
+            D.O.T was born out of frustration with this cycle. We didn't want to start a clothing brand; we wanted to build a gallery. A platform where intricate, animated digital art could escape the screen and find a physical home.
+          </p>
         </div>
       </section>
 
-      <!-- Exhibition / UGC -->
-      <section class="py-20 md:py-32 px-6">
-        <div class="text-center mb-20 fade-up">
-          <h2 class="text-4xl md:text-5xl font-display mb-4">The Archive</h2>
-          <p class="text-neutral-500 text-sm uppercase tracking-widest">Tag @dot.underground</p>
+      <!-- Section 2 -->
+      <section class="flex flex-col md:flex-row gap-12 md:gap-32 mb-32 fade-up">
+        <div class="w-full md:w-1/3">
+          <h2 class="text-xs uppercase tracking-[0.3em] text-neutral-500 sticky top-32">02 / The Meaning</h2>
         </div>
-        
-        <!-- Asymmetrical Exhibition Layout -->
-        <div class="flex flex-col md:flex-row gap-6 md:gap-12">
-          
-          <div class="w-full md:w-1/3 flex flex-col gap-6 md:gap-12">
-            <div class="w-full aspect-[3/4] bg-neutral-900 overflow-hidden group relative fade-up">
-              <img src="/images/community_neon_1781196631842.png" class="w-full h-full object-cover">
-              <div class="absolute inset-0 bg-primary/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                <span class="uppercase text-xs tracking-[0.2em]">@neon.dreamer</span>
-              </div>
-            </div>
-            <div class="w-full aspect-square bg-neutral-900 overflow-hidden group relative fade-up">
-              <img src="/images/psytrance_buddha_1781196594257.png" class="w-full h-full object-cover">
-            </div>
-          </div>
-
-          <div class="w-full md:w-2/3 flex flex-col gap-6 md:gap-12 md:mt-32">
-            <div class="w-full aspect-video bg-neutral-900 overflow-hidden group relative fade-up">
-              <img src="/images/cyber_samurai_1781196605932.png" class="w-full h-full object-cover">
-            </div>
-            <div class="flex gap-6 md:gap-12">
-              <div class="w-1/2 aspect-square bg-neutral-900 overflow-hidden group relative fade-up">
-                <img src="/images/party_patrol_1781196580837.png" class="w-full h-full object-cover">
-              </div>
-              <div class="w-1/2 aspect-[3/4] bg-neutral-900 overflow-hidden group relative fade-up">
-                <img src="/images/community_rave_1781196618755.png" class="w-full h-full object-cover">
-              </div>
-            </div>
-          </div>
-
+        <div class="w-full md:w-2/3">
+          <p class="text-2xl md:text-4xl font-display leading-relaxed mb-8">
+            Dream Of Thousands.
+          </p>
+          <p class="text-lg text-neutral-400 font-light leading-relaxed">
+            It represents the collective consciousness of the underground. The gamers, the artists, the ravers, the anime lovers—the outsiders who see the world differently. We are a collective. We are a movement.
+          </p>
         </div>
+      </section>
+
+      <!-- Section 3 -->
+      <section class="flex flex-col md:flex-row gap-12 md:gap-32 mb-32 fade-up">
+        <div class="w-full md:w-1/3">
+          <h2 class="text-xs uppercase tracking-[0.3em] text-neutral-500 sticky top-32">03 / Made in India</h2>
+        </div>
+        <div class="w-full md:w-2/3">
+          <div class="w-full aspect-video bg-neutral-900 mb-12 overflow-hidden">
+            <img src="/images/cyber_samurai_1781196605932.png" class="w-full h-full object-cover">
+          </div>
+          <p class="text-2xl md:text-4xl font-display leading-relaxed mb-8">
+            Our roots are here. Our craftsmanship is world-class.
+          </p>
+          <p class="text-lg text-neutral-400 font-light leading-relaxed">
+            Every garment is constructed in India. We use premium, heavyweight cottons engineered to drape beautifully and withstand the test of time. We believe in elevating local manufacturing to global luxury standards.
+          </p>
+        </div>
+      </section>
+
+      <!-- Call to Action -->
+      <section class="text-center pt-20 border-t border-secondary/10 fade-up">
+        <h2 class="text-5xl md:text-7xl font-display mb-12">The Future is Ours.</h2>
+        <a href="/manifesto.html" class="inline-block py-5 px-12 border border-secondary text-secondary uppercase tracking-[0.3em] text-xs font-bold hover:bg-secondary hover:text-primary transition-colors">
+          Read The Manifesto
+        </a>
       </section>
 
     </main>
@@ -169,7 +168,7 @@
     <footer class="py-20 md:py-32 px-6 border-t border-secondary/10 bg-secondary/5 hidden md:block">
       <div class="max-w-[1600px] mx-auto text-center">
         <h2 class="text-4xl font-display font-bold mb-4">D.O.T</h2>
-        <p class="text-neutral-400">Join the movement.</p>
+        <p class="text-neutral-400">Bringing your favourite frames to life.</p>
       </div>
     </footer>
 
