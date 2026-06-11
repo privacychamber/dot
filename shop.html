@@ -23,7 +23,7 @@
           </template>
           <template x-for="item in $store.cart.items">
             <div class="flex gap-4 mb-6 pb-6 border-b border-secondary/10">
-              <div class="w-20 h-24 bg-neutral-800 rounded-sm"></div>
+              <div class="w-20 h-24 bg-neutral-800 rounded-sm overflow-hidden"><img :src="item.image || '/images/party_patrol_1781196580837.png'" class="w-full h-full object-cover"></div>
               <div class="flex-1">
                 <h4 class="uppercase tracking-widest text-sm mb-1" x-text="item.name"></h4>
                 <p class="text-neutral-500 text-xs mb-2">Size: L</p>
@@ -84,9 +84,7 @@
         <a href="/product.html" class="product-card group cursor-pointer fade-up block">
           <div class="relative aspect-[3/4] bg-neutral-900 overflow-hidden rounded-sm">
             <div class="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-            <div class="w-full h-full bg-neutral-800 flex justify-center items-center text-neutral-600 font-display italic text-2xl group-hover:scale-105 transition-transform duration-700">
-              Party Patrol
-            </div>
+            <img src="/images/party_patrol_1781196580837.png" alt="Party Patrol" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy">
           </div>
           <div class="mt-6 flex justify-between items-start">
             <div>
@@ -101,9 +99,7 @@
         <a href="/product.html" class="product-card group cursor-pointer fade-up block mt-0 md:mt-12">
           <div class="relative aspect-[3/4] bg-neutral-900 overflow-hidden rounded-sm">
             <div class="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-            <div class="w-full h-full bg-neutral-800 flex justify-center items-center text-neutral-600 font-display italic text-2xl group-hover:scale-105 transition-transform duration-700">
-              Psytrance Buddha
-            </div>
+            <img src="/images/psytrance_buddha_1781196594257.png" alt="Psytrance Buddha" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy">
           </div>
           <div class="mt-6 flex justify-between items-start">
             <div>
@@ -118,9 +114,7 @@
         <a href="/product.html" class="product-card group cursor-pointer fade-up block mt-0 md:mt-24">
           <div class="relative aspect-[3/4] bg-neutral-900 overflow-hidden rounded-sm">
             <div class="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-            <div class="w-full h-full bg-neutral-800 flex justify-center items-center text-neutral-600 font-display italic text-2xl group-hover:scale-105 transition-transform duration-700">
-              Cyber Samurai
-            </div>
+            <img src="/images/cyber_samurai_1781196605932.png" alt="Cyber Samurai" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy">
           </div>
           <div class="mt-6 flex justify-between items-start">
             <div>

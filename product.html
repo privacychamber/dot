@@ -23,7 +23,7 @@
           </template>
           <template x-for="item in $store.cart.items">
             <div class="flex gap-4 mb-6 pb-6 border-b border-secondary/10">
-              <div class="w-20 h-24 bg-neutral-800 rounded-sm"></div>
+              <div class="w-20 h-24 bg-neutral-800 rounded-sm overflow-hidden"><img :src="item.image || '/images/party_patrol_1781196580837.png'" class="w-full h-full object-cover"></div>
               <div class="flex-1">
                 <h4 class="uppercase tracking-widest text-sm mb-1" x-text="item.name"></h4>
                 <p class="text-neutral-500 text-xs mb-2">Size: L</p>
@@ -67,19 +67,13 @@
       
       <!-- Right/Mobile Top: Image Gallery (Scrollable) -->
       <div class="w-full md:w-3/5 md:border-r border-secondary/10 order-1 md:order-2">
-        <div class="w-full aspect-[4/5] bg-neutral-900 flex justify-center items-center text-neutral-500 font-display text-3xl">
-          Front View
-        </div>
-        <div class="w-full aspect-[4/5] bg-neutral-800 flex justify-center items-center text-neutral-500 font-display text-3xl border-t border-secondary/10">
-          Back Detail
-        </div>
-        <div class="w-full aspect-[4/5] bg-neutral-900 flex justify-center items-center text-neutral-500 font-display text-3xl border-t border-secondary/10">
-          Fabric Zoom
-        </div>
+        <img src="/images/party_patrol_1781196580837.png" alt="Front View" class="w-full aspect-[4/5] object-cover" loading="lazy">
+        <img src="/images/party_patrol_1781196580837.png" alt="Back Detail" class="w-full aspect-[4/5] object-cover object-bottom border-t border-secondary/10" loading="lazy">
+        <img src="/images/party_patrol_1781196580837.png" alt="Fabric Zoom" class="w-full aspect-[4/5] object-cover object-left-top border-t border-secondary/10 transform scale-125" loading="lazy">
       </div>
 
       <!-- Left/Mobile Bottom: Product Info (Sticky) -->
-      <div class="w-full md:w-2/5 p-8 md:p-16 flex flex-col justify-center order-2 md:order-1 md:sticky md:top-0 h-auto md:h-screen overflow-y-auto hide-scrollbar">
+      <div class="w-full md:w-2/5 p-8 md:p-16 flex flex-col justify-center order-2 md:order-1 md:sticky md:top-24 h-fit">
         
         <div class="fade-up">
           <div class="text-accent text-sm tracking-[0.2em] uppercase mb-4">Limited Edition</div>
