@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Party Patrol | D.O.T</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,800;1,400&display=swap" rel="stylesheet">
+  </head>
+  <body x-data="{ menuOpen: false, selectedSize: 'L' }" :class="menuOpen ? 'overflow-hidden' : ''" class="bg-primary text-secondary">
+    
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 mix-blend-difference top-0 left-0 p-6 flex justify-between items-center text-secondary">
+      <a href="/index.html" class="text-2xl font-display font-bold tracking-tighter">D.O.T</a>
+      <div class="hidden md:flex gap-8 text-sm uppercase tracking-widest">
+        <a href="/shop.html" class="hover:text-accent transition-colors">Shop</a>
+        <a href="#" class="hover:text-accent transition-colors">Manifesto</a>
+        <a href="#" class="hover:text-accent transition-colors">Community</a>
+      </div>
+      <div class="flex items-center gap-4">
+        <button class="uppercase text-sm tracking-widest hover:text-accent transition-colors">Cart (0)</button>
+      </div>
+    </nav>
+
+    <!-- PDP Layout -->
+    <main class="flex flex-col md:flex-row min-h-screen pt-20">
+      
+      <!-- Right/Mobile Top: Image Gallery (Scrollable) -->
+      <div class="w-full md:w-3/5 md:border-r border-secondary/10 order-1 md:order-2">
+        <div class="w-full aspect-[4/5] bg-neutral-900 flex justify-center items-center text-neutral-500 font-display text-3xl">
+          Front View
+        </div>
+        <div class="w-full aspect-[4/5] bg-neutral-800 flex justify-center items-center text-neutral-500 font-display text-3xl border-t border-secondary/10">
+          Back Detail
+        </div>
+        <div class="w-full aspect-[4/5] bg-neutral-900 flex justify-center items-center text-neutral-500 font-display text-3xl border-t border-secondary/10">
+          Fabric Zoom
+        </div>
+      </div>
+
+      <!-- Left/Mobile Bottom: Product Info (Sticky) -->
+      <div class="w-full md:w-2/5 p-8 md:p-16 flex flex-col justify-center order-2 md:order-1 md:sticky md:top-0 h-auto md:h-screen overflow-y-auto hide-scrollbar">
+        
+        <div class="fade-up">
+          <div class="text-accent text-sm tracking-[0.2em] uppercase mb-4">Limited Edition</div>
+          <h1 class="text-5xl lg:text-7xl font-display font-bold leading-none mb-6">Party Patrol</h1>
+          <div class="text-2xl mb-8">₹2,499</div>
+
+          <p class="text-neutral-400 mb-10 leading-relaxed">
+            A premium oversized tee featuring intricately animated artwork. Made from 240GSM French Terry cotton for the perfect boxy drape. Designed for the underground.
+          </p>
+
+          <!-- Size Selector -->
+          <div class="mb-10">
+            <div class="flex justify-between items-center mb-4">
+              <span class="uppercase tracking-widest text-sm">Select Size</span>
+              <button class="text-neutral-500 underline text-xs">Size Guide</button>
+            </div>
+            <div class="grid grid-cols-4 gap-4">
+              <button @click="selectedSize = 'S'" :class="selectedSize === 'S' ? 'border-secondary text-primary bg-secondary' : 'border-secondary/20 hover:border-secondary'" class="py-3 border transition-colors uppercase tracking-widest text-sm">S</button>
+              <button @click="selectedSize = 'M'" :class="selectedSize === 'M' ? 'border-secondary text-primary bg-secondary' : 'border-secondary/20 hover:border-secondary'" class="py-3 border transition-colors uppercase tracking-widest text-sm">M</button>
+              <button @click="selectedSize = 'L'" :class="selectedSize === 'L' ? 'border-secondary text-primary bg-secondary' : 'border-secondary/20 hover:border-secondary'" class="py-3 border transition-colors uppercase tracking-widest text-sm">L</button>
+              <button @click="selectedSize = 'XL'" :class="selectedSize === 'XL' ? 'border-secondary text-primary bg-secondary' : 'border-secondary/20 hover:border-secondary'" class="py-3 border transition-colors uppercase tracking-widest text-sm">XL</button>
+            </div>
+          </div>
+
+          <button class="w-full magnetic-btn !rounded-none !border-secondary !py-5 bg-secondary text-primary hover:bg-transparent hover:text-secondary transition-all font-bold">
+            Add to Cart
+          </button>
+
+          <!-- Accordion Details -->
+          <div class="mt-16 border-t border-secondary/10" x-data="{ active: 1 }">
+            <div class="border-b border-secondary/10">
+              <button @click="active = active === 1 ? 0 : 1" class="w-full py-6 flex justify-between items-center uppercase tracking-widest text-sm">
+                <span>The Story</span>
+                <span x-text="active === 1 ? '-' : '+'"></span>
+              </button>
+              <div x-show="active === 1" x-collapse class="pb-6 text-neutral-400 text-sm leading-relaxed">
+                Inspired by the underground rave scene in Goa, the Party Patrol artwork represents the chaotic harmony of electronic music. Every line is hand-drawn before being digitally animated.
+              </div>
+            </div>
+            <div class="border-b border-secondary/10">
+              <button @click="active = active === 2 ? 0 : 2" class="w-full py-6 flex justify-between items-center uppercase tracking-widest text-sm">
+                <span>Material & Care</span>
+                <span x-text="active === 2 ? '-' : '+'"></span>
+              </button>
+              <div x-show="active === 2" x-collapse class="pb-6 text-neutral-400 text-sm leading-relaxed">
+                100% Super Combed Cotton. 240 GSM. Reverse wash only. Do not iron directly on the print.
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </main>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

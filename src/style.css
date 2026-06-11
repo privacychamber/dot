@@ -1,0 +1,38 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-primary text-secondary font-sans antialiased overflow-x-hidden;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display tracking-tight;
+  }
+}
+
+@layer utilities {
+  .text-shadow-glow {
+    text-shadow: 0 0 20px rgba(0, 71, 255, 0.5);
+  }
+}
+
+/* Custom Cursor & Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #050505;
+}
+::-webkit-scrollbar-thumb {
+  background: #333;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #0047FF;
+}
+
+/* Magnetic Button Wrapper */
+.magnetic-btn {
+  @apply relative inline-flex items-center justify-center overflow-hidden rounded-full border border-secondary/20 px-8 py-4 text-sm uppercase tracking-widest transition-colors hover:border-accent hover:text-white;
+}
