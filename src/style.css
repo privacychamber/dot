@@ -3,6 +3,20 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    --color-primary: #F4F4F5;
+    --color-secondary: #050505;
+    --color-accent: #0047FF;
+    --color-neon: #B026FF;
+  }
+  
+  html.dark {
+    --color-primary: #050505;
+    --color-secondary: #F4F4F5;
+    --color-accent: #0047FF;
+    --color-neon: #B026FF;
+  }
+
   body {
     @apply bg-primary text-secondary font-sans antialiased overflow-x-hidden;
   }

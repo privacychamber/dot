@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Checkout | D.O.T</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,800;1,400&display=swap" rel="stylesheet">
+  </head>
+  <body x-data="{ menuOpen: false }" x-init="$store.theme.init()" class="bg-primary text-secondary transition-colors duration-500">
+    
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 top-0 left-0 p-6 flex justify-between items-center text-secondary border-b border-secondary/10 bg-primary/80 backdrop-blur-md">
+      <a href="/index.html" class="text-2xl font-display font-bold tracking-tighter">D.O.T</a>
+      <div class="flex items-center gap-6">
+        <!-- Theme Toggle -->
+        <button @click="$store.theme.toggle($event)" class="w-12 h-6 rounded-full border border-secondary/30 relative flex items-center px-1 overflow-hidden group">
+          <div class="absolute inset-0 bg-secondary/10 group-hover:bg-secondary/20 transition-colors"></div>
+          <div class="w-4 h-4 rounded-full bg-secondary transition-transform duration-500" :class="$store.theme.isDark ? 'translate-x-0' : 'translate-x-6'"></div>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Checkout Layout -->
+    <main class="min-h-screen pt-32 pb-20 px-6 max-w-6xl mx-auto flex flex-col md:flex-row gap-16">
+      
+      <!-- Left: Form -->
+      <div class="w-full md:w-3/5">
+        <h1 class="text-4xl font-display mb-10">Checkout</h1>
+        
+        <form class="space-y-10">
+          <!-- Contact -->
+          <section>
+            <h2 class="text-xl font-display mb-6">Contact Information</h2>
+            <div class="space-y-4">
+              <input type="email" placeholder="Email Address" class="w-full bg-transparent border border-secondary/20 p-4 focus:outline-none focus:border-accent transition-colors">
+            </div>
+          </section>
+
+          <!-- Shipping -->
+          <section>
+            <h2 class="text-xl font-display mb-6">Shipping Address</h2>
+            <div class="grid grid-cols-2 gap-4">
+              <input type="text" placeholder="First Name" class="w-full bg-transparent border border-secondary/20 p-4 focus:outline-none focus:border-accent transition-colors">
+              <input type="text" placeholder="Last Name" class="w-full bg-transparent border border-secondary/20 p-4 focus:outline-none focus:border-accent transition-colors">
+              <input type="text" placeholder="Address" class="w-full bg-transparent border border-secondary/20 p-4 focus:outline-none focus:border-accent transition-colors col-span-2">
+              <input type="text" placeholder="City" class="w-full bg-transparent border border-secondary/20 p-4 focus:outline-none focus:border-accent transition-colors">
+              <input type="text" placeholder="PIN Code" class="w-full bg-transparent border border-secondary/20 p-4 focus:outline-none focus:border-accent transition-colors">
+            </div>
+          </section>
+
+          <!-- Payment -->
+          <section>
+            <h2 class="text-xl font-display mb-6">Payment</h2>
+            <div class="space-y-4">
+              <input type="text" placeholder="Card Number" class="w-full bg-transparent border border-secondary/20 p-4 focus:outline-none focus:border-accent transition-colors">
+              <div class="grid grid-cols-2 gap-4">
+                <input type="text" placeholder="MM/YY" class="w-full bg-transparent border border-secondary/20 p-4 focus:outline-none focus:border-accent transition-colors">
+                <input type="text" placeholder="CVC" class="w-full bg-transparent border border-secondary/20 p-4 focus:outline-none focus:border-accent transition-colors">
+              </div>
+            </div>
+          </section>
+
+          <button type="button" class="w-full magnetic-btn !rounded-none !border-secondary !py-5 bg-secondary text-primary hover:bg-transparent hover:text-secondary transition-all font-bold">
+            Pay Now
+          </button>
+        </form>
+      </div>
+
+      <!-- Right: Summary -->
+      <div class="w-full md:w-2/5 bg-secondary/5 p-8 border border-secondary/10 h-fit sticky top-32">
+        <h2 class="text-xl font-display mb-8">Order Summary</h2>
+        
+        <div class="space-y-6 mb-8 border-b border-secondary/10 pb-8">
+          <template x-if="$store.cart.items.length === 0">
+            <p class="text-neutral-500">Your cart is empty.</p>
+          </template>
+          <template x-for="item in $store.cart.items">
+            <div class="flex gap-4">
+              <div class="w-16 h-20 bg-neutral-800 rounded-sm"></div>
+              <div class="flex-1">
+                <h4 class="uppercase tracking-widest text-sm mb-1" x-text="item.name"></h4>
+                <p class="text-neutral-500 text-xs mb-2">Size: L</p>
+                <div class="text-sm" x-text="'₹' + item.price"></div>
+              </div>
+            </div>
+          </template>
+        </div>
+
+        <div class="space-y-4 text-sm">
+          <div class="flex justify-between">
+            <span class="text-neutral-400">Subtotal</span>
+            <span>₹4,998</span>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-neutral-400">Shipping</span>
+            <span>Free</span>
+          </div>
+          <div class="flex justify-between text-lg font-bold pt-4 border-t border-secondary/10 mt-4">
+            <span>Total</span>
+            <span>₹4,998</span>
+          </div>
+        </div>
+      </div>
+
+    </main>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

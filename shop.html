@@ -6,8 +6,41 @@
     <title>Shop | D.O.T</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,800;1,400&display=swap" rel="stylesheet">
   </head>
-  <body x-data="{ menuOpen: false }" :class="menuOpen ? 'overflow-hidden' : ''" class="bg-primary text-secondary">
+  <body x-data="{ menuOpen: false }" x-init="$store.theme.init()" :class="menuOpen ? 'overflow-hidden' : ''" class="bg-primary text-secondary transition-colors duration-500">
     
+    <!-- Cart Drawer -->
+    <div x-show="$store.cart.isOpen" class="fixed inset-0 z-[60] flex justify-end" style="display: none;">
+      <div class="absolute inset-0 bg-primary/80 backdrop-blur-sm" @click="$store.cart.isOpen = false" x-show="$store.cart.isOpen" x-transition.opacity></div>
+      <div class="relative w-full max-w-md bg-primary border-l border-secondary/10 h-full p-8 flex flex-col" x-show="$store.cart.isOpen" x-transition:enter="transition-transform ease-out duration-300" x-transition:enter-start="translate-x-full" x-transition:enter-end="translate-x-0" x-transition:leave="transition-transform ease-in duration-300" x-transition:leave-start="translate-x-0" x-transition:leave-end="translate-x-full">
+        <div class="flex justify-between items-center mb-12">
+          <h2 class="text-2xl font-display uppercase tracking-widest">Your Cart</h2>
+          <button @click="$store.cart.isOpen = false" class="text-sm uppercase tracking-widest hover:text-accent">Close</button>
+        </div>
+        
+        <div class="flex-1 overflow-y-auto">
+          <template x-if="$store.cart.items.length === 0">
+            <p class="text-neutral-500 text-center mt-20">Your cart is empty.</p>
+          </template>
+          <template x-for="item in $store.cart.items">
+            <div class="flex gap-4 mb-6 pb-6 border-b border-secondary/10">
+              <div class="w-20 h-24 bg-neutral-800 rounded-sm"></div>
+              <div class="flex-1">
+                <h4 class="uppercase tracking-widest text-sm mb-1" x-text="item.name"></h4>
+                <p class="text-neutral-500 text-xs mb-2">Size: L</p>
+                <div class="text-sm" x-text="'₹' + item.price"></div>
+              </div>
+            </div>
+          </template>
+        </div>
+
+        <div class="mt-8 border-t border-secondary/10 pt-8">
+          <a href="/checkout.html" class="magnetic-btn w-full !rounded-none !border-secondary !py-4 bg-secondary text-primary hover:bg-transparent hover:text-secondary font-bold text-center block">
+            Checkout
+          </a>
+        </div>
+      </div>
+    </div>
+
     <!-- Navigation -->
     <nav class="fixed w-full z-50 mix-blend-difference top-0 left-0 p-6 flex justify-between items-center text-secondary">
       <a href="/index.html" class="text-2xl font-display font-bold tracking-tighter">D.O.T</a>
@@ -16,8 +49,16 @@
         <a href="#" class="hover:text-accent transition-colors">Manifesto</a>
         <a href="#" class="hover:text-accent transition-colors">Community</a>
       </div>
-      <div class="flex items-center gap-4">
-        <button class="uppercase text-sm tracking-widest hover:text-accent transition-colors">Cart (0)</button>
+      <div class="flex items-center gap-6">
+        <!-- Theme Toggle -->
+        <button @click="$store.theme.toggle($event)" class="w-12 h-6 rounded-full border border-secondary/30 relative flex items-center px-1 overflow-hidden group">
+          <div class="absolute inset-0 bg-secondary/10 group-hover:bg-secondary/20 transition-colors"></div>
+          <div class="w-4 h-4 rounded-full bg-secondary transition-transform duration-500" :class="$store.theme.isDark ? 'translate-x-0' : 'translate-x-6'"></div>
+        </button>
+
+        <button @click="$store.cart.isOpen = true" class="uppercase text-sm tracking-widest hover:text-accent transition-colors">
+          Cart (<span x-text="$store.cart.count">0</span>)
+        </button>
         <button @click="menuOpen = !menuOpen" class="uppercase text-sm tracking-widest md:hidden">Menu</button>
       </div>
     </nav>

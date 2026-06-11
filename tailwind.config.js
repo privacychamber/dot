@@ -4,13 +4,14 @@ export default {
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
+  darkMode: 'class',
   theme: {
     extend: {
       colors: {
-        primary: "#050505",
-        secondary: "#F4F4F5",
-        accent: "#0047FF",
-        neon: "#B026FF"
+        primary: "var(--color-primary)",
+        secondary: "var(--color-secondary)",
+        accent: "var(--color-accent)",
+        neon: "var(--color-neon)"
       },
       fontFamily: {
         sans: ['Inter', 'sans-serif'],

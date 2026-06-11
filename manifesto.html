@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Manifesto | D.O.T</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,800;1,400&display=swap" rel="stylesheet">
+  </head>
+  <body x-data="{ menuOpen: false }" x-init="$store.theme.init()" class="bg-primary text-secondary transition-colors duration-500">
+    
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 top-0 left-0 p-6 flex justify-between items-center text-secondary mix-blend-difference">
+      <a href="/index.html" class="text-2xl font-display font-bold tracking-tighter">D.O.T</a>
+      <div class="hidden md:flex gap-8 text-sm uppercase tracking-widest">
+        <a href="/shop.html" class="hover:text-accent transition-colors">Shop</a>
+        <a href="/manifesto.html" class="text-accent transition-colors">Manifesto</a>
+        <a href="/community.html" class="hover:text-accent transition-colors">Community</a>
+      </div>
+      <div class="flex items-center gap-6">
+        <!-- Theme Toggle -->
+        <button @click="$store.theme.toggle($event)" class="w-12 h-6 rounded-full border border-secondary/30 relative flex items-center px-1 overflow-hidden group">
+          <div class="absolute inset-0 bg-secondary/10 group-hover:bg-secondary/20 transition-colors"></div>
+          <div class="w-4 h-4 rounded-full bg-secondary transition-transform duration-500" :class="$store.theme.isDark ? 'translate-x-0' : 'translate-x-6'"></div>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Manifesto Content -->
+    <main class="min-h-screen pt-40 pb-32 px-6">
+      <div class="max-w-4xl mx-auto text-center manifesto-text">
+        <h3 class="text-accent uppercase tracking-[0.2em] text-sm mb-12">The Manifesto</h3>
+        
+        <p class="text-4xl md:text-6xl font-display leading-tight mb-16 fade-up">
+          D.O.T is not a clothing brand.<br>
+          <span class="italic text-neutral-500">It is a movement.</span>
+        </p>
+
+        <div class="w-full aspect-video bg-neutral-900 mb-24 fade-up flex items-center justify-center text-neutral-600 font-display text-2xl">
+          [ Cinematic Brand Video ]
+        </div>
+
+        <p class="text-2xl md:text-4xl font-display leading-snug mb-16 fade-up text-left">
+          For the dreamers, creators, misfits, artists, gamers, anime lovers, and underground culture enthusiasts. For people who see the world differently.
+        </p>
+
+        <p class="text-xl md:text-2xl font-sans font-light leading-relaxed mb-16 fade-up text-left text-neutral-400">
+          We merge animated art with luxury streetwear. Every piece we create is a canvas that brings your favourite frames to life. Designed with intention, printed on heavyweight cotton, and built for the underground.
+        </p>
+
+        <div class="fade-up">
+          <a href="/shop.html" class="magnetic-btn border-secondary text-secondary hover:text-primary">
+            Explore The Universe
+          </a>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="py-20 px-6 border-t border-secondary/10">
+      <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start md:items-center gap-12">
+        <div>
+          <h2 class="text-4xl font-display font-bold mb-4">D.O.T</h2>
+          <p class="text-neutral-400 max-w-sm">Made in India, For The Dreamers.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

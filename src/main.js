@@ -6,6 +6,78 @@ import * as THREE from 'three';
 
 gsap.registerPlugin(ScrollTrigger);
 
+// Global State
+document.addEventListener('alpine:init', () => {
+  // Cart Store
+  Alpine.store('cart', {
+    items: [],
+    isOpen: false,
+    add(item) {
+      this.items.push(item);
+      this.isOpen = true;
+    },
+    get count() {
+      return this.items.length;
+    }
+  });
+
+  // Theme Store
+  Alpine.store('theme', {
+    isDark: localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : true,
+    init() {
+      if (this.isDark) {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+    },
+    toggle(event) {
+      this.isDark = !this.isDark;
+      localStorage.setItem('theme', this.isDark ? 'dark' : 'light');
+      
+      // Futuristic GSAP Animation for theme swap
+      const isDarkNow = this.isDark;
+      
+      // Create an expanding circle effect from the click
+      const { clientX: x, clientY: y } = event || { clientX: window.innerWidth / 2, clientY: 20 };
+      const maxRadius = Math.hypot(window.innerWidth, window.innerHeight);
+      
+      const overlay = document.createElement('div');
+      overlay.style.position = 'fixed';
+      overlay.style.top = '0';
+      overlay.style.left = '0';
+      overlay.style.width = '100vw';
+      overlay.style.height = '100vh';
+      overlay.style.backgroundColor = isDarkNow ? '#050505' : '#F4F4F5';
+      overlay.style.zIndex = '9999';
+      overlay.style.pointerEvents = 'none';
+      overlay.style.clipPath = `circle(0px at ${x}px ${y}px)`;
+      document.body.appendChild(overlay);
+
+      gsap.to(overlay, {
+        clipPath: `circle(${maxRadius}px at ${x}px ${y}px)`,
+        duration: 0.8,
+        ease: "power3.inOut",
+        onComplete: () => {
+          if (isDarkNow) {
+            document.documentElement.classList.add('dark');
+          } else {
+            document.documentElement.classList.remove('dark');
+          }
+          // Update ThreeJS color
+          if(window.updateParticlesTheme) window.updateParticlesTheme(isDarkNow);
+          
+          gsap.to(overlay, {
+            opacity: 0,
+            duration: 0.3,
+            onComplete: () => overlay.remove()
+          });
+        }
+      });
+    }
+  });
+});
+
 // Initialize Alpine
 window.Alpine = Alpine;
 Alpine.start();
@@ -136,11 +208,21 @@ function initThreeJSBackground() {
   
   const particlesMaterial = new THREE.PointsMaterial({
     size: 0.005,
-    color: '#0047FF',
+    color: Alpine.store('theme').isDark ? '#0047FF' : '#333333',
     transparent: true,
     opacity: 0.8,
     blending: THREE.AdditiveBlending
   });
+
+  // Export a function to update the particles theme color
+  window.updateParticlesTheme = (isDark) => {
+    gsap.to(particlesMaterial.color, {
+      r: isDark ? new THREE.Color('#0047FF').r : new THREE.Color('#333333').r,
+      g: isDark ? new THREE.Color('#0047FF').g : new THREE.Color('#333333').g,
+      b: isDark ? new THREE.Color('#0047FF').b : new THREE.Color('#333333').b,
+      duration: 1
+    });
+  };
 
   const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
   scene.add(particlesMesh);
