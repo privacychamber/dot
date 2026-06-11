@@ -1,3 +1,4 @@
+import './index.css';
 import Alpine from 'alpinejs';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
