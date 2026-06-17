@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>Collections | D.O.T</title>
-    <!-- CSS is imported via Vite main.js -->
   </head>
   <body x-data="{ scrolled: false }" @scroll.window="scrolled = (window.pageYOffset > 20)" :class="$store.nav.isMobileMenuOpen ? 'overflow-hidden' : ''" class="bg-primary text-textPrimary m-0 p-0 selection:bg-accentBlue selection:text-white pb-0">
     
@@ -21,7 +20,6 @@
           </button>
         </div>
 
-        <!-- Progress Bar -->
         <div class="mb-8 bg-primary p-4 border border-white/5">
           <template x-if="$store.cart.amountToFreeShipping > 0">
             <p class="text-xs text-textSecondary mb-3">You are <span class="text-accentBlue font-bold" x-text="'₹' + $store.cart.amountToFreeShipping"></span> away from Free Shipping.</p>
@@ -38,6 +36,7 @@
           <template x-if="$store.cart.items.length === 0">
             <div class="h-full flex flex-col items-center justify-center text-center text-textSecondary">
               <p class="text-xl font-display mb-4 text-white">Your bag is empty.</p>
+              <a href="/shop.html" class="uppercase text-[10px] tracking-[0.2em] border-b border-textSecondary pb-1 hover:text-white hover:border-white transition-colors">Start Shopping</a>
             </div>
           </template>
           <template x-for="(item, index) in $store.cart.items">
@@ -148,10 +147,9 @@
       </div>
     </div>
 
-    <!-- GLOBAL HEADER (Shopify Plus Sticky transparent -> Glass) -->
+    <!-- GLOBAL HEADER -->
     <header class="fixed top-0 left-0 w-full z-50 transition-all duration-300" :class="scrolled ? 'h-[72px] bg-primary/90 backdrop-blur-md border-b border-white/5' : 'h-[80px] bg-transparent border-b border-transparent'">
       <div class="w-full h-full px-6 flex justify-between items-center max-w-[1600px] mx-auto">
-        
         <!-- Mobile Hamburger -->
         <button class="md:hidden text-white" @click="$store.nav.toggleMobileMenu()">
           <svg x-show="!$store.nav.isMobileMenuOpen" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="square" stroke-linejoin="miter" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16"></path></svg>
@@ -186,146 +184,53 @@
       </div>
     </header>
 
-    <!-- COLLECTION HERO -->
-    <div class="w-full h-[60vh] md:h-[70vh] bg-surface relative overflow-hidden flex items-end">
-      <div class="absolute inset-0 bg-primary opacity-40 z-0"></div>
-      <img src="/images/community_rave_1781196618755.png" class="absolute inset-0 w-full h-full object-cover opacity-50 mix-blend-screen grayscale">
-      
-      <div class="relative z-10 w-full max-w-[1600px] mx-auto p-6 md:p-16 fade-up">
-        <p class="uppercase tracking-[0.3em] text-[10px] text-accentPurple mb-4 font-bold">Collection 01</p>
-        <h1 class="text-6xl md:text-8xl font-display font-bold mb-4 tracking-tighter">The Awakening</h1>
-        <p class="text-textSecondary max-w-xl text-lg font-light leading-relaxed">
-          A curated exploration of our foundational pieces. Intricate designs bridging the gap between digital art and physical garments.
-        </p>
-      </div>
-    </div>
-
-    <!-- COLLECTION LAYOUT -->
-    <main class="w-full flex flex-col md:flex-row max-w-[1600px] mx-auto relative border-t border-white/5">
-      
-      <!-- LEFT: STICKY FILTERS (Desktop) / MOBILE FILTERS -->
-      <aside class="w-full md:w-[250px] shrink-0 border-r border-white/5 p-6 md:py-12 md:pr-12 md:sticky md:top-[80px] md:h-[calc(100vh-80px)] overflow-y-auto no-scrollbar">
-        <div class="flex justify-between items-center md:hidden mb-6">
-          <span class="font-bold uppercase tracking-widest text-xs">Filter</span>
-          <button><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="square" stroke-linejoin="miter" stroke-width="1.5" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path></svg></button>
+    <!-- ABOUT HERO -->
+        <!-- COLLECTIONS MAIN -->
+    <main class="w-full min-h-[100dvh] pt-[120px] bg-primary relative px-6 md:px-12 pb-24">
+      <div class="max-w-[1600px] mx-auto">
+        <div class="mb-16 fade-up text-center">
+          <p class="uppercase tracking-[0.3em] text-accentPurple text-xs mb-4">Curated Archives</p>
+          <h1 class="text-5xl md:text-7xl font-display font-bold mb-6">Collections.</h1>
         </div>
 
-        <div class="hidden md:flex flex-col gap-10">
+        <div class="flex flex-col gap-12">
           
-          <div>
-            <h3 class="font-bold uppercase tracking-[0.2em] text-[10px] mb-6 text-white border-b border-white/10 pb-4">Categories</h3>
-            <div class="flex flex-col gap-4 text-xs text-textSecondary uppercase tracking-widest">
-              <label class="flex items-center gap-3 cursor-pointer group">
-                <input type="checkbox" checked class="accent-accentBlue">
-                <span class="group-hover:text-white transition-colors">All Products</span>
-              </label>
-              <label class="flex items-center gap-3 cursor-pointer group">
-                <input type="checkbox" class="accent-accentBlue">
-                <span class="group-hover:text-white transition-colors">T-Shirts</span>
-              </label>
-              <label class="flex items-center gap-3 cursor-pointer group">
-                <input type="checkbox" class="accent-accentBlue">
-                <span class="group-hover:text-white transition-colors">Hoodies</span>
-              </label>
+          <a href="/shop.html" class="block w-full h-[60vh] relative group overflow-hidden fade-up">
+            <div class="absolute inset-0 bg-primary opacity-40 z-0 group-hover:opacity-20 transition-opacity duration-500"></div>
+            <img src="/images/party_patrol_1781196580837.png" class="absolute inset-0 w-full h-full object-cover opacity-60 mix-blend-screen group-hover:scale-105 transition-transform duration-700">
+            <div class="absolute bottom-12 left-12 z-10">
+              <p class="uppercase tracking-[0.3em] text-[10px] text-accentBlue mb-2 font-bold">Collection 01</p>
+              <h2 class="text-5xl md:text-6xl font-display font-bold tracking-tighter text-white mb-4 group-hover:text-accentBlue transition-colors">Party Patrol</h2>
+              <span class="inline-block border-b border-white pb-1 text-xs uppercase tracking-widest group-hover:pr-4 transition-all">Explore</span>
             </div>
-          </div>
+          </a>
 
-          <div>
-            <h3 class="font-bold uppercase tracking-[0.2em] text-[10px] mb-6 text-white border-b border-white/10 pb-4">Size</h3>
-            <div class="grid grid-cols-3 gap-2 text-[10px] text-textSecondary uppercase font-bold tracking-widest">
-              <button class="border border-white/10 py-2 hover:border-white hover:text-white transition-colors">S</button>
-              <button class="border border-white/10 py-2 hover:border-white hover:text-white transition-colors">M</button>
-              <button class="border border-white/10 py-2 hover:border-white hover:text-white transition-colors">L</button>
-              <button class="border border-white/10 py-2 hover:border-white hover:text-white transition-colors">XL</button>
+          <a href="/shop.html" class="block w-full h-[60vh] relative group overflow-hidden fade-up">
+            <div class="absolute inset-0 bg-primary opacity-40 z-0 group-hover:opacity-20 transition-opacity duration-500"></div>
+            <img src="/images/community_neon_1781196631842.png" class="absolute inset-0 w-full h-full object-cover opacity-60 mix-blend-screen group-hover:scale-105 transition-transform duration-700">
+            <div class="absolute bottom-12 left-12 z-10">
+              <p class="uppercase tracking-[0.3em] text-[10px] text-accentOrange mb-2 font-bold">Collection 02</p>
+              <h2 class="text-5xl md:text-6xl font-display font-bold tracking-tighter text-white mb-4 group-hover:text-accentOrange transition-colors">Neon Dreamers</h2>
+              <span class="inline-block border-b border-white pb-1 text-xs uppercase tracking-widest group-hover:pr-4 transition-all">Explore</span>
             </div>
-          </div>
+          </a>
 
-          <div>
-            <h3 class="font-bold uppercase tracking-[0.2em] text-[10px] mb-6 text-white border-b border-white/10 pb-4">Sort By</h3>
-            <div class="flex flex-col gap-4 text-xs text-textSecondary uppercase tracking-widest">
-              <button class="text-left hover:text-white transition-colors text-white font-bold">Latest Arrivals</button>
-              <button class="text-left hover:text-white transition-colors">Price: Low to High</button>
-              <button class="text-left hover:text-white transition-colors">Price: High to Low</button>
+          <a href="/shop.html" class="block w-full h-[60vh] relative group overflow-hidden fade-up">
+            <div class="absolute inset-0 bg-primary opacity-40 z-0 group-hover:opacity-20 transition-opacity duration-500"></div>
+            <img src="/images/cyber_samurai_1781196605932.png" class="absolute inset-0 w-full h-full object-cover opacity-60 mix-blend-screen group-hover:scale-105 transition-transform duration-700">
+            <div class="absolute bottom-12 left-12 z-10">
+              <p class="uppercase tracking-[0.3em] text-[10px] text-accentPurple mb-2 font-bold">Collection 03</p>
+              <h2 class="text-5xl md:text-6xl font-display font-bold tracking-tighter text-white mb-4 group-hover:text-accentPurple transition-colors">Cyber Samurai</h2>
+              <span class="inline-block border-b border-white pb-1 text-xs uppercase tracking-widest group-hover:pr-4 transition-all">Explore</span>
             </div>
-          </div>
+          </a>
 
         </div>
-      </aside>
-
-      <!-- RIGHT: PRODUCT GRID -->
-      <div class="w-full md:w-[calc(100%-250px)] p-6 md:p-12">
-        
-        <div class="flex justify-between items-center mb-8 text-xs text-textSecondary uppercase tracking-widest">
-          <span>8 Products</span>
-        </div>
-
-        <div class="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-8">
-          
-          <!-- Product Card 1 -->
-          <div class="group relative flex flex-col fade-up">
-            <div class="absolute top-3 left-3 z-10 bg-white text-primary text-[9px] uppercase tracking-widest px-2 py-1 font-bold">Limited</div>
-            <a href="/product.html" class="w-full aspect-[4/5] bg-surface overflow-hidden relative mb-4">
-              <img src="/images/party_patrol_1781196580837.png" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-500 opacity-100 group-hover:opacity-0" loading="lazy">
-              <img src="/images/party_patrol_1781196580837.png" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 opacity-0 group-hover:opacity-100 group-hover:scale-105" loading="lazy">
-              <button @click.prevent="$store.cart.add({name: 'Party Patrol', price: 2499, image: '/images/party_patrol_1781196580837.png'})" class="hidden lg:block absolute bottom-0 left-0 w-full py-4 bg-white text-primary text-[10px] font-bold uppercase tracking-widest translate-y-full group-hover:translate-y-0 transition-transform duration-300">Quick Add</button>
-            </a>
-            <a href="/product.html" class="flex flex-col">
-              <h3 class="font-display font-bold text-lg mb-1 group-hover:text-accentBlue transition-colors">Party Patrol</h3>
-              <p class="text-textSecondary text-sm mb-3">₹2,499</p>
-              <button @click.prevent="$store.cart.add({name: 'Party Patrol', price: 2499, image: '/images/party_patrol_1781196580837.png'})" class="lg:hidden w-full py-3 border border-white/20 text-[10px] uppercase tracking-widest font-bold hover:bg-white hover:text-primary transition-colors">Add to Bag</button>
-            </a>
-          </div>
-
-          <!-- Product Card 2 -->
-          <div class="group relative flex flex-col fade-up" style="transition-delay: 100ms;">
-            <a href="/product.html" class="w-full aspect-[4/5] bg-surface overflow-hidden relative mb-4">
-              <img src="/images/psytrance_buddha_1781196594257.png" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-500 opacity-100 group-hover:opacity-0" loading="lazy">
-              <img src="/images/psytrance_buddha_1781196594257.png" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 opacity-0 group-hover:opacity-100 group-hover:scale-105" loading="lazy">
-              <button @click.prevent="$store.cart.add({name: 'Psytrance Buddha', price: 2999, image: '/images/psytrance_buddha_1781196594257.png'})" class="hidden lg:block absolute bottom-0 left-0 w-full py-4 bg-white text-primary text-[10px] font-bold uppercase tracking-widest translate-y-full group-hover:translate-y-0 transition-transform duration-300">Quick Add</button>
-            </a>
-            <a href="/product.html" class="flex flex-col">
-              <h3 class="font-display font-bold text-lg mb-1 group-hover:text-accentBlue transition-colors">Psytrance Buddha</h3>
-              <p class="text-textSecondary text-sm mb-3">₹2,999</p>
-              <button @click.prevent="$store.cart.add({name: 'Psytrance Buddha', price: 2999, image: '/images/psytrance_buddha_1781196594257.png'})" class="lg:hidden w-full py-3 border border-white/20 text-[10px] uppercase tracking-widest font-bold hover:bg-white hover:text-primary transition-colors">Add to Bag</button>
-            </a>
-          </div>
-
-          <!-- Product Card 3 -->
-          <div class="group relative flex flex-col fade-up" style="transition-delay: 200ms;">
-            <div class="absolute top-3 left-3 z-10 bg-accentOrange text-white text-[9px] uppercase tracking-widest px-2 py-1 font-bold">Hot</div>
-            <a href="/product.html" class="w-full aspect-[4/5] bg-surface overflow-hidden relative mb-4">
-              <img src="/images/cyber_samurai_1781196605932.png" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-500 opacity-100 group-hover:opacity-0" loading="lazy">
-              <img src="/images/cyber_samurai_1781196605932.png" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 opacity-0 group-hover:opacity-100 group-hover:scale-105" loading="lazy">
-              <button @click.prevent="$store.cart.add({name: 'Cyber Samurai', price: 3499, image: '/images/cyber_samurai_1781196605932.png'})" class="hidden lg:block absolute bottom-0 left-0 w-full py-4 bg-white text-primary text-[10px] font-bold uppercase tracking-widest translate-y-full group-hover:translate-y-0 transition-transform duration-300">Quick Add</button>
-            </a>
-            <a href="/product.html" class="flex flex-col">
-              <h3 class="font-display font-bold text-lg mb-1 group-hover:text-accentBlue transition-colors">Cyber Samurai</h3>
-              <p class="text-textSecondary text-sm mb-3">₹3,499</p>
-              <button @click.prevent="$store.cart.add({name: 'Cyber Samurai', price: 3499, image: '/images/cyber_samurai_1781196605932.png'})" class="lg:hidden w-full py-3 border border-white/20 text-[10px] uppercase tracking-widest font-bold hover:bg-white hover:text-primary transition-colors">Add to Bag</button>
-            </a>
-          </div>
-          
-          <!-- Product Card 4 -->
-          <div class="group relative flex flex-col fade-up" style="transition-delay: 300ms;">
-            <a href="/product.html" class="w-full aspect-[4/5] bg-surface overflow-hidden relative mb-4">
-              <img src="/images/community_neon_1781196631842.png" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-500 opacity-100 group-hover:opacity-0" loading="lazy">
-              <img src="/images/community_neon_1781196631842.png" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 opacity-0 group-hover:opacity-100 group-hover:scale-105" loading="lazy">
-              <button @click.prevent="$store.cart.add({name: 'Neon Dreamer', price: 2499, image: '/images/community_neon_1781196631842.png'})" class="hidden lg:block absolute bottom-0 left-0 w-full py-4 bg-white text-primary text-[10px] font-bold uppercase tracking-widest translate-y-full group-hover:translate-y-0 transition-transform duration-300">Quick Add</button>
-            </a>
-            <a href="/product.html" class="flex flex-col">
-              <h3 class="font-display font-bold text-lg mb-1 group-hover:text-accentBlue transition-colors">Neon Dreamer</h3>
-              <p class="text-textSecondary text-sm mb-3">₹2,499</p>
-              <button @click.prevent="$store.cart.add({name: 'Neon Dreamer', price: 2499, image: '/images/community_neon_1781196631842.png'})" class="lg:hidden w-full py-3 border border-white/20 text-[10px] uppercase tracking-widest font-bold hover:bg-white hover:text-primary transition-colors">Add to Bag</button>
-            </a>
-          </div>
-
-        </div>
-
       </div>
     </main>
 
     <!-- SECTION 9: FOOTER -->
-    <footer class="pt-24 pb-12 px-6 bg-primary hidden md:block border-t border-white/5">
+    <footer class="pt-24 pb-12 px-6 bg-primary border-t border-white/5">
       <div class="max-w-[1600px] mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
         
         <div class="col-span-1 md:col-span-2">
@@ -352,6 +257,14 @@
           <a href="#" class="text-textSecondary hover:text-white transition-colors">Size Guide</a>
         </div>
         
+      </div>
+      <div class="max-w-[1600px] mx-auto pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6 text-xs text-textSecondary uppercase tracking-widest">
+        <p>© 2026 DREAM OF THOUSANDS.</p>
+        <div class="flex gap-6">
+          <a href="#" class="hover:text-white transition-colors">Instagram</a>
+          <a href="#" class="hover:text-white transition-colors">Twitter</a>
+          <a href="#" class="hover:text-white transition-colors">Discord</a>
+        </div>
       </div>
     </footer>
 

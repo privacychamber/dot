@@ -13,7 +13,8 @@ export default defineConfig({
         shop: resolve(__dirname, 'shop.html'),
         product: resolve(__dirname, 'product.html'),
         checkout: resolve(__dirname, 'checkout.html'),
-
+        collections: resolve(__dirname, 'collections.html'),
+        account: resolve(__dirname, 'account.html'),
         about: resolve(__dirname, 'about.html'),
       },
     },

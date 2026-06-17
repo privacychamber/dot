@@ -40,6 +40,12 @@ document.addEventListener('alpine:init', () => {
     }
   });
 
+  // Search Modal State
+  Alpine.store('search', {
+    isOpen: false,
+    query: ''
+  });
+
   // Navigation & Mega Menu State
   Alpine.store('nav', {
     isMobileMenuOpen: false,
