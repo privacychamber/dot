@@ -8,6 +8,11 @@ gsap.registerPlugin(ScrollTrigger);
 window.Alpine = Alpine;
 
 document.addEventListener('alpine:init', () => {
+  // Global Config
+  Alpine.store('config', {
+    apiUrl: import.meta.env.VITE_API_URL || 'http://localhost:3000'
+  });
+
   // Cart Store (Advanced Shopify Plus Style)
   Alpine.store('cart', {
     items: [],
@@ -37,6 +42,10 @@ document.addEventListener('alpine:init', () => {
     
     remove(index) {
       this.items.splice(index, 1);
+    },
+    
+    clear() {
+      this.items = [];
     }
   });
 
